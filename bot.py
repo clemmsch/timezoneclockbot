@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
+from discord.utils import find
 
+import datetime
 import json
 
 config = open("config.json")
@@ -10,11 +12,18 @@ obj = json.loads(jsondata)
 
 
 
+#Time Zones
+
 client = commands.Bot(command_prefix = obj['prefix'])
 
 @client.event
 async def on_ready():
     print('Bot is ready.')
+
+
+@client.event
+async def on_guild_join(guild):
+    general = find(lambda x: x.name == 'general', guild.text_channels)
 
 @client.command()
 async def ping(ctx):
@@ -52,6 +61,7 @@ async def createClock(ctx, channelName, timezone):
         await ctx.send(embed=mbed)
     else:
         await ctx.send('You do not have the permissions to do this')
+
 
 
 
