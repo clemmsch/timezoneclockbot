@@ -132,3 +132,9 @@ dmypy.json
 
 # Secret Stuff (Config)
 config.json
+
+#Tests
+test.py
+notes.txt
+
+.vscode
